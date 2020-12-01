@@ -20,4 +20,9 @@ router.get('/titleByName',async (ctx, next) => {
   ctx.body = result;
 })
 
+router.get('/createTable',async (ctx, next) => {
+  let result = await dao.createTable();
+  ctx.body = result;
+})
+
 module.exports = router
