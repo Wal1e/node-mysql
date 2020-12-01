@@ -80,10 +80,40 @@ const createTable = function(){
     })
   })
 }
+// 删除某一条数据
+const deleteUser = function(id){
+  return new Promise(resolve => {
+    const sql = " DELETE FROM myTable WHERE id = ?";
+    db.query(sql, id, (err,result) =>{
+      if(err){
+        console.log("delete user failed:",err);
+      }else{
+        console.log("delete user success:",result);
+        resolve(result);
+      }
+    })
+  })
+}
+// 更新数据库
+const updateUser = function(user,id){
+  return new Promise(resolve => {
+    const sql = `UPDATE myTable SET ? WHERE id = ?`;
+    db.query(sql,[user,id],(err,result)=>{
+      if(err){
+        console.log("update user failed:",err);
+      }else{
+        console.log("update user  success:",result);
+        resolve(result);
+      }
+    })
+  })
+}
 module.exports = {
   createDatabase,
   createTable,
   getList,
   insertUser,
-  getTitleByName
+  getTitleByName,
+  deleteUser,
+  updateUser
 }

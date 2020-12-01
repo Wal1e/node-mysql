@@ -25,4 +25,16 @@ router.get('/createTable',async (ctx, next) => {
   ctx.body = result;
 })
 
+router.get('/deleteUser',async (ctx, next) => {
+  const id = ctx.request.query.id;
+  let result = await dao.deleteUser(id);
+  ctx.body = result;
+})
+
+router.post('/updateUser',async (ctx, next) => {
+  const { id , ...user} = ctx.request.body;
+  let result = await dao.updateUser(user, id);
+  ctx.body = result;
+})
+
 module.exports = router
